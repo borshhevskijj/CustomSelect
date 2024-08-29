@@ -84,6 +84,7 @@ export const CustomSelect: React.FC<SelectProps> = ({
     closeDropdown();
     setSearch("");
   };
+
   return (
     <div className="custom-select">
       <CustomInput
