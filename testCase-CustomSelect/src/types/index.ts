@@ -19,9 +19,7 @@ export interface SelectProps {
 }
 
 export type KeyValuePairOfOption = { label: string; value: string }
-// export type OptionType = string 
 export type OptionType = string | KeyValuePairOfOption;
-// export type OptionType = KeyValuePairOfOption;
 
 export type CustomDropdown =  React.ComponentType<DropDownProps>;
   interface DropDownProps{
