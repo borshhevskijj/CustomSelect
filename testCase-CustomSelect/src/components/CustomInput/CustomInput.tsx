@@ -13,6 +13,7 @@ interface CustomInputProps {
   // handleCreateOption: () => void;
   CustomLabel?: CustomLabel;
   placeholder: string;
+  inputRef: React.LegacyRef<HTMLInputElement>;
 }
 export const CustomInput: React.FC<CustomInputProps> = ({
   CustomLabel,
@@ -23,6 +24,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
   handleSearch,
   placeholder,
   // handleCreateOption,
+  inputRef,
 }) => {
   const onBackSpaceHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Backspace" && !search.length && selectedOptions.length) {
@@ -39,6 +41,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
         </div>
       )}
       <input
+        ref={inputRef}
         placeholder={selectedOptions.length ? "" : placeholder}
         onKeyDown={onBackSpaceHandler}
         type="text"

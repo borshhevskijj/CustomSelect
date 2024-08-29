@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { SelectProps, OptionType } from "../../types/index";
+import React, { useEffect, useRef, useState } from "react";
+import { SelectProps, OptionType, KeyValuePairOfOption } from "../../types/index";
 import CustomOptions from "../CustomOptions/CustomOptions";
 import { CustomInput } from "../CustomInput/CustomInput";
 import "./customSelect.css";
@@ -17,19 +17,14 @@ export const CustomSelect: React.FC<SelectProps> = ({
   const [search, setSearch] = useState("");
   const [isOptionsVisible, setIsOptionsVisible] = useState(false);
   const [isUnmounting, setIsUnmounting] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const findOption = (option: OptionType) => {
     return options.find((item) => {
       const isEqual =
         typeof item === "string"
           ? item === option
-          : item.value ===
-            (
-              option as {
-                label: string;
-                value: string;
-              }
-            ).value;
+          : (item as KeyValuePairOfOption).value === (option as unknown as KeyValuePairOfOption).value;
       return isEqual;
     });
   };
@@ -42,7 +37,7 @@ export const CustomSelect: React.FC<SelectProps> = ({
         setIsOptionsVisible(false);
       }
     } else {
-      if (!selectedOptions.find((item) => item.value === option.value)) {
+      if (findOption(option)) {
         setSelectedOptions((prev) => [...prev, option]);
         setSearch("");
       }
@@ -66,6 +61,7 @@ export const CustomSelect: React.FC<SelectProps> = ({
       setIsOptionsVisible(true);
     }
   };
+
   const closeDropdown = () => {
     if (isOptionsVisible) {
       setIsUnmounting(true);
@@ -77,6 +73,13 @@ export const CustomSelect: React.FC<SelectProps> = ({
       setIsOptionsVisible(true);
     }
   };
+
+  useEffect(() => {
+    if (isOptionsVisible && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [selectedOptions, isOptionsVisible]);
+
   const toggleVisibility = () => {
     closeDropdown();
     setSearch("");
@@ -84,6 +87,7 @@ export const CustomSelect: React.FC<SelectProps> = ({
   return (
     <div className="custom-select">
       <CustomInput
+        inputRef={inputRef}
         CustomLabel={CustomLabel}
         handleRemove={handleRemove}
         handleSearch={handleSearch}

@@ -1,6 +1,7 @@
 import React from "react";
 import { OptionType } from "../../types";
 import checked from "../../assets/icons/checked.svg";
+import { checkedOption } from "../../helpers/typeChecker";
 interface OptionsItemProps {
   handleSelect: (option: OptionType) => void;
   option: OptionType;
@@ -18,7 +19,7 @@ const OptionsItem: React.FC<OptionsItemProps> = ({ handleRemove, handleSelect, o
   const className = isSelected ? "selected" : "";
   return (
     <li className={`option ${className}`} onClick={clickHandler}>
-      <div className="optionLabel">{option.label}</div>
+      <div className="optionLabel">{checkedOption(option)}</div>
       {isSelected && (
         <div className="imgWrapper">
           <img src={checked} alt="checked" />

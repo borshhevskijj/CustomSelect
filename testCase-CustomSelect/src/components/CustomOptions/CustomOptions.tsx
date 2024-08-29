@@ -3,6 +3,8 @@ import { CustomDropdown, OptionType } from "../../types/index";
 import OptionsItem from "./OptionsItem";
 import "./optionsDropdown.css";
 import { AddOption } from "./AddOption/AddOption";
+import { checkedOption } from "../../helpers/typeChecker";
+
 interface CustomOptionsProps {
   CustomDropdown?: CustomDropdown;
   options: OptionType[];
@@ -27,12 +29,18 @@ const CustomOptions: React.FC<CustomOptionsProps> = ({
   handleCreateOption,
 }) => {
   const selectedOptionsLabels = options.filter((option) => selectedOptions.includes(option));
-  const filterOptionsBySearch = options.filter((option) => option.label.includes(search));
+  const filterOptionsBySearch = options.filter((option) => checkedOption(option).includes(search));
+
   return (
     <>
       <div className={`options-dropdown ${isUnmounting ? "closing" : ""}`}>
         {CustomDropdown ? (
-          <CustomDropdown options={options} selectedOptions={selectedOptions} onSelect={handleSelect} />
+          <CustomDropdown
+            options={options}
+            selectedOptions={selectedOptions}
+            onRemove={handleRemove}
+            onSelect={handleSelect}
+          />
         ) : (
           <ul>
             {filterOptionsBySearch.length ? (
@@ -51,6 +59,7 @@ const CustomOptions: React.FC<CustomOptionsProps> = ({
             ) : handleCreateOption ? (
               <AddOption handleCreateOption={handleCreateOption} search={search} />
             ) : (
+              // самому не нравится вложенные тернарники, можно отрефакторить)
               <li className="option">No data 😞😞😞</li>
             )}
           </ul>
