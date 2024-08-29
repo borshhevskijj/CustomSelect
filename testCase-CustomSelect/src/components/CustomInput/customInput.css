@@ -1,0 +1,59 @@
+.input-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--borderPrimary);
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: var(--borderRadius);
+    background-color: var(--bgSurfacePrimary);
+    transition: border .12s ease-in,box-shadow .15s ease-in;
+  }
+  .input-container input {
+    flex: 1;
+    min-width: 0px;
+    border: none;
+    outline: none;
+    padding: 0 4px;
+    background-color: inherit;
+  }
+  .input-container:hover{
+    border-color: var(--borderAccent);
+    box-shadow: var(--inputShadow);
+  }
+  .input-container:has( input:focus){
+    border-color: var(--borderAccent);
+    box-shadow: var(--inputShadow);
+  }
+  .custom-select:has(.input-container ~ .options-dropdown) .input-container{
+    border-color: var(--borderAccent);
+    box-shadow: var(--inputShadow);
+  } 
+  
+  .input-container .selected-option{
+    cursor: default;
+  }
+
+  .selected-option {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    
+    background-color: var(--bgSurfaceSecondaryAccent);
+    padding: 4px;
+    border-radius: 4px;
+  }  
+  .selected-option div {
+    flex: 1 0 auto;
+    transition: transform .1s ease-in;
+    cursor: pointer;
+  }
+  .selected-option div:hover {
+    transform: scale(1.2);
+  }
+  

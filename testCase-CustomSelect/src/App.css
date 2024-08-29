@@ -1,0 +1,37 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+ul {
+  list-style: none;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+input::placeholder{
+color: var(--textTertiary);
+}
+
+
+/*  */
+main{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 150px;
+}
