@@ -1,12 +1,12 @@
 import React from "react";
-import { OptionType } from "../../types";
+import { onRemove, onSelect, OptionType } from "../../types";
 import checked from "../../assets/icons/checked.svg";
 import { checkedOption } from "../../helpers/typeChecker";
 interface OptionsItemProps {
-  handleSelect: (option: OptionType) => void;
   option: OptionType;
   isSelected: boolean;
-  handleRemove: (option: OptionType) => void;
+  handleSelect: onSelect;
+  handleRemove: onRemove;
 }
 const OptionsItem: React.FC<OptionsItemProps> = ({ handleRemove, handleSelect, option, isSelected }) => {
   const clickHandler = () => {

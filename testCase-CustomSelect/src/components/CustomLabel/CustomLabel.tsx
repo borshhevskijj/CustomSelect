@@ -1,11 +1,11 @@
 import React from "react";
-import { OptionType, CustomLabel as CustomLabelType } from "../../types";
+import { OptionType, CustomLabel as CustomLabelType, onRemove } from "../../types";
 import "../CustomInput/customInput.css";
 import deleteIcon from "../../assets/icons/crossDelete.svg";
 
 interface CustomLabelProps {
   selectedOptions: OptionType[];
-  handleRemove: (option: OptionType) => void;
+  handleRemove: onRemove;
   CustomLabelComponent?: CustomLabelType;
 }
 

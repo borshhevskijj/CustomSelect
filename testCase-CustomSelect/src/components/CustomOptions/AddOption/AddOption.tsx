@@ -1,8 +1,9 @@
 import React from "react";
 import addIcon from "../../../assets/icons/add.svg";
+import { onOptionCreate } from "../../../types";
 interface props {
   search: string;
-  handleCreateOption: ((input: string) => void) | undefined;
+  handleCreateOption: onOptionCreate;
 }
 export const AddOption: React.FC<props> = ({ search, handleCreateOption }) => {
   const addOptionHandler = (e: React.MouseEvent) => {

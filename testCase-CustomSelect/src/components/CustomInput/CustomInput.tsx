@@ -1,16 +1,15 @@
 import React from "react";
 import { CustomLabel as Label } from "../CustomLabel/CustomLabel";
-import { CustomLabel, OptionType } from "../../types";
+import { CustomLabel, onRemove, OptionType } from "../../types";
 import searchIcon from "../../assets/icons/search.svg";
 import "./customInput.css";
 
 interface CustomInputProps {
-  handleRemove: (option: OptionType) => void;
+  handleRemove: onRemove;
   selectedOptions: OptionType[];
   onInputClick: () => void;
   search: string;
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  // handleCreateOption: () => void;
   CustomLabel?: CustomLabel;
   placeholder: string;
   inputRef: React.LegacyRef<HTMLInputElement>;

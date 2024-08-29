@@ -11,13 +11,13 @@ export interface SelectProps {
         /** Кастомный компонент для отображения выбраной опции */
     customLabel?: CustomLabel;
         /** Обработчик для создания новой опции, если её нет в списке */
-    onOptionCreate?: (input: string) => void;
+    onOptionCreate?: onOptionCreate
         /** Обработчик для изменения выбранных опций */
     onChange?: (selected: OptionType | OptionType[]) => void;
         /** Текст-заполнитель для поля ввода */
     placeholder?: string
 }
-
+export type onOptionCreate = (input: string) => void;
 export type KeyValuePairOfOption = { label: string; value: string }
 export type OptionType = string | KeyValuePairOfOption;
 
@@ -25,9 +25,12 @@ export type CustomDropdown =  React.ComponentType<DropDownProps>;
   interface DropDownProps{
         options: OptionType[];
         selectedOptions: OptionType[];
-        onSelect: (option: OptionType) => void;
-        onRemove: (option: OptionType) => void
+        onSelect: onSelect
+        onRemove: onRemove
   }
+
+  export type onSelect = (option: OptionType) => void
+  export type onRemove = (option: OptionType) => void
 
   export type CustomLabel= React.ComponentType<LabelProps>;
 interface LabelProps{

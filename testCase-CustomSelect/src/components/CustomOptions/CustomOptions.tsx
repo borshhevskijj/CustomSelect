@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomDropdown, OptionType } from "../../types/index";
+import { CustomDropdown, onOptionCreate, onRemove, onSelect, OptionType } from "../../types/index";
 import OptionsItem from "./OptionsItem";
 import "./optionsDropdown.css";
 import { AddOption } from "./AddOption/AddOption";
@@ -9,12 +9,12 @@ interface CustomOptionsProps {
   CustomDropdown?: CustomDropdown;
   options: OptionType[];
   selectedOptions: OptionType[];
-  handleSelect: (option: OptionType) => void;
   search: string;
   closeDropdown: () => void;
   isUnmounting: boolean;
-  handleRemove: (option: OptionType) => void;
-  handleCreateOption: ((input: string) => void) | undefined;
+  handleSelect: onSelect;
+  handleRemove: onRemove;
+  handleCreateOption?: onOptionCreate;
 }
 
 const CustomOptions: React.FC<CustomOptionsProps> = ({
@@ -37,8 +37,8 @@ const CustomOptions: React.FC<CustomOptionsProps> = ({
         {CustomDropdown ? (
           <CustomDropdown
             options={options}
-            selectedOptions={selectedOptions}
             onRemove={handleRemove}
+            selectedOptions={selectedOptions}
             onSelect={handleSelect}
           />
         ) : (
